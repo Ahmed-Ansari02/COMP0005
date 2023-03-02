@@ -13,6 +13,8 @@ class Binary_search_tree:
         else:
             return -1
     def put(self, value):
+        if (value == self.value):
+            return
         if (value > self.value):
             if (self.right == None):
                 self.right = Binary_search_tree(value)
@@ -25,8 +27,8 @@ class Binary_search_tree:
                 self.left.put(value)
 
 
-file = open("./test1-mobydick.txt", "r")
-binary_search_tree = None;
+file = open("./test3-dickens.txt", "r")
+binary_search_tree = None
 test_file = open("./test-search.txt", "r")
 
 for line in file:
