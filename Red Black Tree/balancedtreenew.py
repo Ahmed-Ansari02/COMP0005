@@ -12,7 +12,7 @@ class Node:
 class redblacktree:
 
     def __init__(self):
-        self.empty = Node(0)
+        self.empty = Node("xyz")
         self.empty.colour = 'B'
         self.empty.left = None
         self.empty.right = None
