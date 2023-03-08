@@ -154,15 +154,12 @@ class redblacktree:
 
 if __name__ == "__main__":
         tree = redblacktree()
-        file = open("./test3-dickens.txt", "r")
-        test_file = open("./test-search.txt", "r")
+        file = open("./test1-mobydick.txt", "r")
+        #test_file = open("./test-search.txt", "r")
         for line in file:
             for word in line.split():
                 tree.insert(word)
-        for word in test_file:
-            word = word.strip('\n');
-            if(tree.searchtree(word) == False):
-                print(word + " not found")
+        print(tree.searchtree("kremlin"))
 
     
 
