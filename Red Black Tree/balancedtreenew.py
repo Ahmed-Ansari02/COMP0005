@@ -138,14 +138,11 @@ class redblacktree:
 
     def printTree(self, node, last):
             if node != self.empty:
-
                 if last:
                     print("R: ", end=' ')
 
                 else:
                     print("L: ", end=' ')
-
-
                 s_color = "RED" if node.colour == 'R' else "BLACK"
                 print(str(node.value) + "(" + s_color + ")")
                 self.printTree(node.left, False)
@@ -157,21 +154,15 @@ class redblacktree:
 
 if __name__ == "__main__":
         tree = redblacktree()
+        file = open("./test3-dickens.txt", "r")
+        test_file = open("./test-search.txt", "r")
+        for line in file:
+            for word in line.split():
+                tree.insert(word)
+        for word in test_file:
+            word = word.strip('\n');
+            if(tree.searchtree(word) == False):
+                print(word + " not found")
 
-
-        tree.insert(3)
-        tree.insert(1)
-        tree.insert(5)
-        tree.insert(7)
-        tree.insert(6)
-        tree.insert(8)
-        tree.insert(9)
-        tree.insert(10)
-
-        tree.display()
-        
-        a = tree.searchtree(9)
-        b = tree.searchtree(11)
-        print(a)
-        print(b)
+    
 
