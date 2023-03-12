@@ -1,29 +1,27 @@
 # Time complexity = O(logN)
 # Space complexity = O(n)
 class Node:
-
     def __init__(self, value):
         self.left = None
         self.parent = None
         self.right = None
         self.value = value
-        self.colour = 'R'
+        self.colour = "R"
+
 
 class redblacktree:
-
     def __init__(self):
         self.empty = Node("xyz")
-        self.empty.colour = 'B'
+        self.empty.colour = "B"
         self.empty.left = None
         self.empty.right = None
         self.root = self.empty
-
 
     def insert(self, data):
         node = Node(data)
         node.parent = None
         node.value = data
-        node.colour = 'R'
+        node.colour = "R"
         node.left = self.empty
         node.right = self.empty
 
@@ -47,7 +45,7 @@ class redblacktree:
             tempval.right = node
 
         if node.parent == None:
-            node.colour = 'B'
+            node.colour = "B"
             return
 
         if node.parent.parent == None:
@@ -95,41 +93,41 @@ class redblacktree:
         rotateval.parent = lchild
 
     def colourswap(self, a, l):
-        if a.colour == 'R':
-            a.colour = 'B'
-            l.parent.colour = 'B'
-            l.parent.parent.colour = 'R'
+        if a.colour == "R":
+            a.colour = "B"
+            l.parent.colour = "B"
+            l.parent.parent.colour = "R"
             l = l.parent.parent
 
     def insertcontinue(self, leaf):
-        while leaf.parent.colour == 'R':
+        while leaf.parent.colour == "R":
             if leaf.parent == leaf.parent.parent.right:
                 aunt = leaf.parent.parent.left
-                if aunt.colour == 'R':
+                if aunt.colour == "R":
                     self.colourswap(aunt, leaf)
                     leaf = leaf.parent.parent
                 else:
                     if leaf == leaf.parent.left:
                         leaf = leaf.parent
                         self.rightrotate(leaf)
-                    leaf.parent.colour = 'B'
-                    leaf.parent.parent.colour = 'R'
+                    leaf.parent.colour = "B"
+                    leaf.parent.parent.colour = "R"
                     self.leftrotate(leaf.parent.parent)
             else:
                 aunt = leaf.parent.parent.right
-                if aunt.colour == 'R':
+                if aunt.colour == "R":
                     self.colourswap(aunt, leaf)
                     leaf = leaf.parent.parent
                 else:
                     if leaf == leaf.parent.right:
                         leaf = leaf.parent
                         self.leftrotate(leaf)
-                    leaf.parent.colour = 'B'
-                    leaf.parent.parent.colour = 'R'
+                    leaf.parent.colour = "B"
+                    leaf.parent.parent.colour = "R"
                     self.rightrotate(leaf.parent.parent)
             if leaf == self.root:
                 break
-            self.root.colour = 'B'
+            self.root.colour = "B"
 
             # intended order of values : (3,1,5,7,6,8,9,10)
 
@@ -137,29 +135,31 @@ class redblacktree:
         return self.search(self.root, a)
 
     def printTree(self, node, last):
-            if node != self.empty:
-                if last:
-                    print("R: ", end=' ')
+        if node != self.empty:
+            if last:
+                print("R: ", end=" ")
 
-                else:
-                    print("L: ", end=' ')
-                s_color = "RED" if node.colour == 'R' else "BLACK"
-                print(str(node.value) + "(" + s_color + ")")
-                self.printTree(node.left, False)
-                self.printTree(node.right, True)
+            else:
+                print("L: ", end=" ")
+            s_color = "RED" if node.colour == "R" else "BLACK"
+            print(str(node.value) + "(" + s_color + ")")
+            self.printTree(node.left, False)
+            self.printTree(node.right, True)
 
-        # Function to call print
+    # Function to call print
     def display(self):
-            self.printTree(self.root, True)
+        self.printTree(self.root, True)
+
 
 if __name__ == "__main__":
-        tree = redblacktree()
-        file = open("./test1-mobydick.txt", "r")
-        #test_file = open("./test-search.txt", "r")
-        for line in file:
-            for word in line.split():
-                tree.insert(word)
-        print(tree.searchtree("kremlin"))
+    tree = redblacktree()
+    file = open("./test3-dickens.txt", "r")
+    test_file = open("./test-search.txt", "r")
+    for line in file:
+        for word in line.split():
+            tree.insert(word)
+    for word in test_file:
+        word = word.strip()
+        if not tree.searchtree(word):
 
-    
-
+            print(word, " is not present in the tree")

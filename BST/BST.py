@@ -37,7 +37,7 @@ for line in file:
             binary_search_tree = Binary_search_tree(word)
         else:
             binary_search_tree.put(word)
-for word in test_file:
-    word = word.strip('\n');
-    if(binary_search_tree.get(word) == -1):
-        print(word + " not found")
+# for word in test_file:
+#     word = word.strip('\n');
+#     if(binary_search_tree.get(word) == -1):
+#         print(word + " not found")
