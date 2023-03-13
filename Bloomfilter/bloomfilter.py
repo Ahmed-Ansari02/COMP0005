@@ -1,4 +1,5 @@
-
+#m = ceil((n * log(p)) / log(1 / pow(2, log(2)))) where n is the number of elements, p is the probability of false positives
+# k = round((m / n) * log(2)) where m is the size of the bit array and n is the number of elements
 class bloomfilter:
         def __init__(self,size, hash_count):
                 self.size = size
@@ -25,7 +26,7 @@ class bloomfilter:
 
 file = open("./test3-dickens.txt", "r")
 test_file = open("./test-search.txt","r")
-my_bloomfilter = bloomfilter(9217517, 6)
+my_bloomfilter = bloomfilter(9161520, 6)
 for line in file:
     for word in line.split():
         my_bloomfilter.add(word)
